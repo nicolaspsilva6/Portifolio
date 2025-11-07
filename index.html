@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portifolio | Especialista em Dados</title>
+    <title>Portfolio | Nicolas Pinheiro - Analista de Dados</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-dark: #3a0ca3;
-            --secondary: #f72585;
-            --accent: #4cc9f0;
+            --primary: #8A2BE2;
+            --primary-dark: #4B0082;
+            --primary-light: #9370DB;
+            --secondary: #000000;
+            --accent: #BA55D3;
             --light: #f8f9fa;
-            --dark: #212529;
+            --dark: #121212;
             --gray: #6c757d;
             --light-gray: #e9ecef;
+            --card-bg: #ffffff;
             --success: #38b000;
             
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -24,6 +26,15 @@
             --shadow-xl: 0 20px 40px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.05);
             
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .dark-mode {
+            --light: #121212;
+            --dark: #f8f9fa;
+            --gray: #a0a0a0;
+            --light-gray: #2a2a2a;
+            --secondary: #ffffff;
+            --card-bg: #1e1e1e;
         }
         
         * {
@@ -38,6 +49,7 @@
             background-color: var(--light);
             line-height: 1.7;
             overflow-x: hidden;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         
         .mono {
@@ -58,6 +70,7 @@
         h1, h2, h3, h4 {
             font-weight: 700;
             line-height: 1.3;
+            color: var(--dark);
         }
         
         h1 {
@@ -78,13 +91,14 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: var(--secondary);
+            background: var(--accent);
             border-radius: 2px;
         }
         
         h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--dark);
         }
         
         p {
@@ -105,6 +119,9 @@
             font-weight: 600;
             transition: var(--transition);
             box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            border: none;
+            outline: none;
         }
         
         .btn-primary {
@@ -121,6 +138,7 @@
         .btn-outline {
             border: 2px solid var(--primary);
             color: var(--primary);
+            background: transparent;
         }
         
         .btn-outline:hover {
@@ -150,6 +168,7 @@
         .header-content h1 {
             margin-bottom: 20px;
             animation: fadeInUp 1s ease;
+            color: white;
         }
         
         .header-content p {
@@ -175,7 +194,7 @@
             width: 600px;
             height: 600px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             z-index: 1;
         }
         
@@ -190,9 +209,33 @@
             background: rgba(255,255,255,0.03);
         }
         
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            color: white;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
         /* About */
         #about {
-            background-color: white;
+            background-color: var(--light);
         }
         
         .about-container {
@@ -223,7 +266,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(67, 97, 238, 0.3), rgba(58, 12, 163, 0.7));
+            background: linear-gradient(to bottom, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.7));
         }
         
         .about-content h2 {
@@ -234,9 +277,57 @@
             margin-bottom: 20px;
         }
         
+        /* Skills */
+        #skills {
+            background-color: var(--light);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(138, 43, 226, 0.1);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .skill-item {
+            background: var(--light-gray);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
         /* Projects */
         #projects {
-            background-color: white;
+            background-color: var(--light);
         }
         
         .projects-grid {
@@ -246,17 +337,19 @@
         }
         
         .project-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: var(--shadow-md);
             transition: var(--transition);
             position: relative;
+            border: 1px solid rgba(138, 43, 226, 0.1);
         }
         
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-xl);
+            border-color: var(--primary);
         }
         
         .project-img {
@@ -341,14 +434,15 @@
         }
         
         .timeline-content {
-            background: white;
+            background: var(--card-bg);
             padding: 25px;
             border-radius: 10px;
             box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(138, 43, 226, 0.1);
         }
         
         .timeline-content h3 {
-            color: var(--primary-dark);
+            color: var(--primary);
         }
         
         .timeline-content p {
@@ -402,11 +496,13 @@
             background: rgba(255,255,255,0.1);
             border-radius: 50px;
             transition: var(--transition);
+            color: white;
         }
         
         .contact-link:hover {
             background: rgba(255,255,255,0.2);
             transform: translateY(-3px);
+            color: white;
         }
         
         .contact-link i {
@@ -437,6 +533,7 @@
             align-items: center;
             justify-content: center;
             transition: var(--transition);
+            color: white;
         }
         
         .footer-link:hover {
@@ -454,6 +551,71 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink {
+            0%, 100% { border-color: transparent }
+            50% { border-color: var(--accent) }
+        }
+        
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--accent);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink .75s step-end infinite;
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+            border: none;
+            outline: none;
+        }
+        
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Loading animation */
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary);
+            width: 0%;
+            z-index: 1001;
+            transition: width 0.3s ease;
         }
         
         /* Responsive */
@@ -496,16 +658,39 @@
             .projects-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .header-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Loading Bar -->
+    <div class="loading-bar" id="loadingBar"></div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <!-- Header/Hero Section -->
     <header>
         <div class="container">
             <div class="header-content">
-                <h1>Transformando dados em soluções inteligentes</h1>
-                <p>Olá! Meu nome é Nicolas, atualmente trabalho na Red Bull como analista de dados com automações em VBA, desenvolvendo soluções que otimizam processos e tornam as rotinas mais eficientes.</p>
+                <h1><span class="typewriter">Transformador de dados</span></h1>
+                <p>Olá! Meu nome é Nicolas, atualmente trabalho na Red Bull como <strong>Analista de Dados</strong> com foco em automações em VBA, desenvolvendo soluções que otimizam processos e tornam as rotinas mais eficientes.</p>
                 <div class="header-btns">
                     <a href="#projects" class="btn btn-primary">Ver Projetos</a>
                     <a href="#contact" class="btn btn-outline">Contato</a>
@@ -516,29 +701,76 @@
     </header>
 
     <!-- About Section -->
-    <<section id="about">
+    <section id="about">
         <div class="container">
             <div class="about-container">
                 <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="[Seu Nome]">
+                    <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Nicolas Pinheiro">
                 </div>
                 <div class="about-content">
-                    <h2>Sobre Mim</h2>
+                    <h2>Sobre mim</h2>
                     <p>
-                        Profissional dedicado ao desenvolvimento de dados com foco em Python, atualmente me especializando em SQL e Java. Tenho experiência na criação e manutenção de pipelines de dados, automação de processos e manipulação eficiente de informações para suportar projetos de análise e decisão.
-    
-                        Minha trajetória inclui a implementação de soluções que otimizam o tratamento de dados, possibilitando uma visão clara e acessível para equipes técnicas e não técnicas. Com uma abordagem prática e orientada a resultados, estou sempre buscando ampliar minhas competências para atuar de forma mais abrangente em ambientes de dados e desenvolvimento.
+                        Sou um <strong>Analista de Dados</strong> apaixonado por tecnologia e por transformar dados em soluções que facilitam o dia a dia. Atualmente trabalho na <strong>Red Bull</strong> desenvolvendo automações em VBA para otimizar processos e melhorar a eficiência operacional.
+                    </p>
+                    <p>
+                        Tenho experiência sólida com automação em VBA e conhecimentos em Python, SQL, Power BI, Java e AWS. Gosto de aprender novas ferramentas, explorar formas de otimizar processos e aplicar dados para gerar insights e resultados reais.
+                    </p>
+                    <p>
+                        Sou uma pessoa curiosa, dedicada e focada em evolução constante, sempre em busca de novos desafios que me ajudem a crescer e entregar o melhor em cada projeto.
                     </p>
                     <a href="Curriculo_Nicolas_Pinheiro.pdf" download="Curriculo_Nicolas_Pinheiro.pdf" class="btn btn-primary">
-                        📄 Download CV
-                      </a>
-                      
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Habilidades Técnicas</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programação</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">VBA (Excel)</span>
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">Java</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-bar"></i> Análise de Dados</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Power BI</span>
+                        <span class="skill-item">Excel Avançado</span>
+                        <span class="skill-item">Estatística</span>
+                        <span class="skill-item">Visualização</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cogs"></i> Automação</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Macros VBA</span>
+                        <span class="skill-item">Automação de Processos</span>
+                        <span class="skill-item">Scripting</span>
+                        <span class="skill-item">Workflow</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-cloud"></i> Tecnologias</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">AWS</span>
+                        <span class="skill-item">Git</span>
+                        <span class="skill-item">Streamlit</span>
+                        <span class="skill-item">Jupyter</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     
-
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
@@ -549,7 +781,7 @@
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Projeto 1">
                     </div>
                     <div class="project-content">
-                        <h3>Análise Completa </h3>
+                        <h3>Análise Completa de RH</h3>
                         <p>Este projeto analisa dados de recursos humanos para entender fatores que influenciam a rotatividade. Inclui limpeza, visualizações e uma regressão para identificar a relação entre tempo de carreira e saída da empresa, fornecendo insights para melhorar a gestão de funcionários.</p>
                         <div class="project-tags">
                             <span class="project-tag">Python</span>
@@ -568,8 +800,8 @@
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="Projeto 2">
                     </div>
                     <div class="project-content">
-                        <h3>Regressão Linear </h3>
-                        <p>Desenvolvi um modelo de regressão linear simples utilizando Python e a biblioteca Statsmodels para analisar a relação entre os anos de educação superior e o salário de colaboradores. Com base em uma amostra de 46 funcionários, o modelo indicou que cada ano adicional de estudo está associado a um aumento médio de R$526,73 no salário, com um coeficiente de determinação (R²) de 0,604, sugerindo uma correlação positiva moderada entre as variáveis..</p>
+                        <h3>Regressão Linear</h3>
+                        <p>Desenvolvi um modelo de regressão linear simples utilizando Python e a biblioteca Statsmodels para analisar a relação entre os anos de educação superior e o salário de colaboradores.</p>
                         <div class="project-tags">
                             <span class="project-tag">Python</span>
                             <span class="project-tag">Matplotlib</span>
@@ -588,15 +820,15 @@
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Projeto 3">
                     </div>
                     <div class="project-content">
-                        <h3>Power Bi projeto de banco </h3>
+                        <h3>Power BI - Projeto de Banco</h3>
                         <p>Relatório interativo desenvolvido no Power BI durante um curso, com foco em visualização de dados financeiros. Inclui filtros dinâmicos, indicadores de desempenho e alertas visuais para facilitar a tomada de decisões.</p>
                         <div class="project-tags">
                             <span class="project-tag">Power BI</span>
-                           
+                            <span class="project-tag">DAX</span>
+                            <span class="project-tag">Visualização</span>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/nicolaspsilva6/Analise-de-bancos-/blob/main/Analise%20de%20banco.png" class="btn btn-primary">Detalhes</a>
-
                         </div>
                     </div>
                 </div>
@@ -610,19 +842,31 @@
             <h2>Experiência Profissional</h2>
             <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-date">2024 - Presente</div>
+                    <div class="timeline-date">2025  Atual</div>
                     <div class="timeline-content">
-                        <h3>Estagio em Python</h3>
-                        <p></p>
+                        <h3>Analista de Dados - Red Bull</h3>
+                        <p>Desenvolvimento e implementação de soluções de automação para otimizar processos internos.</p>
                         <ul>
-                            <li>Atuei como Desenvolvedor Full Stack com foco em Python </li>
-                            <li>Desenvolvi um sistema de coleta de pesquisas utilizando Streamlit, voltado para uma região específica </li>
-                            <li>Os dados coletados seriam estruturados e enviados para órgãos governamentais para apoio em decisões públicas  </li>
+                            <li>Criação de macros VBA para automatizar relatórios e processos manuais</li>
+                            <li>Desenvolvimento de dashboards interativos para análise de dados</li>
+                            <li>Otimização de fluxos de trabalho através de automações</li>
+                            <li>Análise de dados para identificar oportunidades de melhoria</li>
                         </ul>
                     </div>
                 </div>
                 
-               
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h3>Estágio em Python</h3>
+                        <p>Desenvolvimento de sistemas de coleta e análise de dados.</p>
+                        <ul>
+                            <li>Atuei como Desenvolvedor Full Stack com foco em Python</li>
+                            <li>Desenvolvi um sistema de coleta de pesquisas utilizando Streamlit</li>
+                            <li>Estruturação de dados para envio a órgãos governamentais</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -631,25 +875,147 @@
     <section id="contact">
         <div class="container">
             <h2>Vamos Conversar</h2>
-            <p>Estou sempre aberto a novas oportunidades e colaborações. Se você tem um projeto interessante ou quer discutir sobre dados, ficarei feliz em conversar!</p>
+            <p>Estou sempre aberto a novas oportunidades e colaborações. Se você tem um projeto interessante ou quer discutir sobre dados e automações, ficarei feliz em conversar!</p>
             
             <div class="contact-links">
                 <a href="mailto:nicolas.pinheiro7@gmail.com" class="contact-link">
-                    <i class="fas fa-envelope"></i> 
+                    <i class="fas fa-envelope"></i> Email
                 </a>
                 <a href="https://www.linkedin.com/in/nicolaspinheirodasilva/" class="contact-link">
-                    <i class="fab fa-linkedin-in"></i> 
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
                 </a>
                 <a href="https://github.com/nicolaspsilva6" class="contact-link">
-                    <i class="fab fa-github"></i> 
+                    <i class="fab fa-github"></i> GitHub
                 </a>
                 <a href="Curriculo_Nicolas_Pinheiro.pdf" class="contact-link">
-                    <i class="fas fa-file-alt"></i> 
+                    <i class="fas fa-file-alt"></i> Currículo
                 </a>
             </div>
         </div>
     </section>
 
+    <footer>
+        <div class="container">
+            
+            <p>&copy; 2025 Nicolas Pinheiro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-  
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme or prefer-color-scheme
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+        
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkScheme.matches)) {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Project card hover effects
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Typewriter effect
+        const typewriterElement = document.querySelector('.typewriter');
+        const text = typewriterElement.textContent;
+        typewriterElement.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                typewriterElement.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typewriterElement.style.borderRight = 'none';
+            }
+        }
+        
+        // Start typewriter effect after page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Loading bar animation
+        const loadingBar = document.getElementById('loadingBar');
+        window.addEventListener('load', () => {
+            loadingBar.style.width = '100%';
+            setTimeout(() => {
+                loadingBar.style.opacity = '0';
+            }, 500);
+        });
+
+        // Add scroll progress to loading bar
+        window.addEventListener('scroll', () => {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+            loadingBar.style.width = scrollPercent + '%';
+            loadingBar.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
